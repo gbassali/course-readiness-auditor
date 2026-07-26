@@ -2,6 +2,25 @@ import datetime
 from enum import Enum
 from pydantic import BaseModel, Field
 
+### ENUMS ###
+class FindingSeverity(str, Enum):
+    CRITICAL = "critical"
+    WARNING = "warning"
+    SUGGESTION = "suggestion"
+
+class FindingCategory(str, Enum):
+    GRADING = "grading"
+    SCHEDULE = "schedule"
+    ALIGNMENT = "alignment"
+    POLICY = "policy"
+    COMPLETENESS = "completeness"
+
+class AuditStatus(str, Enum):
+    READY = "ready"
+    NEEDS_REVIEW = "needs_review"
+    NOT_READY = "not_ready"
+    
+
 # Originally was going to have a plain Assessment model.
 # But this won't work if we need to compare due dates & other properties across different sources (ex. syllabus & class schedule)
 # Not every source will have weights & due dates --> Both optional.
@@ -48,23 +67,4 @@ class AuditReport(BaseModel):
     course_name: str = Field(description="Name of the audited course.")
     audit_status: AuditStatus = Field(description="Status derived from audit findings (existence of critical, warning, or suggestion findings).")
     findings: list[AuditFinding] = Field(description="List of audit findings.")
-    generated_at: datetime = Field(default = datetime.now)
-
-
-### ENUMS ###
-class FindingSeverity(str, Enum):
-    CRITICAL = "critical"
-    WARNING = "warning"
-    SUGGESTION = "suggestion"
-
-class FindingCategory(str, Enum):
-    GRADING = "grading"
-    SCHEDULE = "schedule"
-    ALIGNMENT = "alignment"
-    POLICY = "policy"
-    COMPLETENESS = "completeness"
-
-class AuditStatus(str, Enum):
-    READY = "ready"
-    NEEDS_REVIEW = "needs_review"
-    NOT_READY = "not_ready"
+    generated_at: datetime.datetime = Field(default_factory=datetime.datetime.now)

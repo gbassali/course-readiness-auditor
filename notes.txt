@@ -1,3 +1,5 @@
+### DEEP AGENTS CONCEPT ###
+
 A normal LLM call: Prompt --> model --> response
 An agent adds a decision making loop: Task received --> Decide action --> Call a tool or other agent --> Inspect result --> Decide next action --> Return final answer.
 
@@ -30,7 +32,7 @@ agent = create_deep_agent(
 
 Packages:
 - deepagents: Agent framework, used to create different agents & delegate tasks.
-- model provider package: Langchain integration package for whichever 
+- model provider package: Langchain integration package for whichever provider I choose.
     - Translates LangChain's interface into the providers API format.
 - fastapi: Python API framework
 - pydantic: Define models
@@ -52,7 +54,18 @@ When creating a deep agent, you provide:
     - *Must have a name & description
 - many other fields
 
+### SAMPLE COURSE PACKAGE ###
+
+Planted issues:
+1. Assignment weights total 105%
+2. Assignment 2 due-date conflict (Syllabus: November 3, 2026, Schedule: October 27, 2026)
+3. Assignment 2 is due before required topic is taught (Due: October 27, 2026, Database normalization: October 29, 2026)
+4. Rubric/Assignment brief mismatch (Rubric assigns 15% to automated test coverage, assignment brief never requires tests)
+5. Late-policy contradiction (Syllabus accepts work three days late, assignment brief doesn't accept late submissions)
+6. Vague accessibility instructions (Syllabus says "contact the appropriate university office.” No office name, process, contact information, etc.)
 
 LangSmith***
 logging
 Request or audit IDs
+
+**add comments to all models/functions at end

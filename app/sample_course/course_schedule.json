@@ -1,0 +1,77 @@
+{
+  "course_name": "COMP 4000 \u2014 Software Systems Engineering",
+  "topics": [
+    {
+      "id": "intro-systems-design",
+      "name": "Introduction to Software Systems Design",
+      "teaching_date": "2026-09-08"
+    },
+    {
+      "id": "requirements-modeling",
+      "name": "Requirements and Domain Modeling",
+      "teaching_date": "2026-09-15"
+    },
+    {
+      "id": "api-design",
+      "name": "REST API Design",
+      "teaching_date": "2026-09-22"
+    },
+    {
+      "id": "database-normalization",
+      "name": "Relational Database Normalization",
+      "teaching_date": "2026-10-29"
+    },
+    {
+      "id": "automated-testing",
+      "name": "Automated Testing Strategies",
+      "teaching_date": "2026-11-10"
+    },
+    {
+      "id": "deployment-observability",
+      "name": "Deployment and Observability",
+      "teaching_date": "2026-11-24"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "assignment-1",
+      "name": "API Design Proposal",
+      "weight": 20,
+      "due_date": "2026-09-30",
+      "required_topic_ids": [
+        "requirements-modeling",
+        "api-design"
+      ]
+    },
+    {
+      "id": "assignment-2",
+      "name": "Relational Data Service",
+      "weight": 30,
+      "due_date": "2026-10-27",
+      "required_topic_ids": [
+        "database-normalization"
+      ]
+    },
+    {
+      "id": "midterm",
+      "name": "Midterm Examination",
+      "weight": 25,
+      "due_date": "2026-10-15",
+      "required_topic_ids": [
+        "requirements-modeling",
+        "api-design"
+      ]
+    },
+    {
+      "id": "final-exam",
+      "name": "Final Examination",
+      "weight": 30,
+      "due_date": "2026-12-15",
+      "required_topic_ids": [
+        "database-normalization",
+        "automated-testing",
+        "deployment-observability"
+      ]
+    }
+  ]
+}
