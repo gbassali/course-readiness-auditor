@@ -36,7 +36,6 @@
     {
       "id": "assignment-1",
       "name": "API Design Proposal",
-      "weight": 20,
       "due_date": "2026-09-30",
       "required_topic_ids": [
         "requirements-modeling",
@@ -46,7 +45,6 @@
     {
       "id": "assignment-2",
       "name": "Relational Data Service",
-      "weight": 30,
       "due_date": "2026-10-27",
       "required_topic_ids": [
         "database-normalization"
@@ -55,7 +53,6 @@
     {
       "id": "midterm",
       "name": "Midterm Examination",
-      "weight": 25,
       "due_date": "2026-10-15",
       "required_topic_ids": [
         "requirements-modeling",
@@ -65,7 +62,6 @@
     {
       "id": "final-exam",
       "name": "Final Examination",
-      "weight": 30,
       "due_date": "2026-12-15",
       "required_topic_ids": [
         "database-normalization",

@@ -19,7 +19,7 @@ class AuditStatus(str, Enum):
     READY = "ready"
     NEEDS_REVIEW = "needs_review"
     NOT_READY = "not_ready"
-    
+
 
 # Originally was going to have a plain Assessment model.
 # But this won't work if we need to compare due dates & other properties across different sources (ex. syllabus & class schedule)
@@ -29,7 +29,7 @@ class AssessmentRecord(BaseModel):
     name: str = Field(description="Human readable name of the assessment.") 
     source_file: str = Field(description="Source file of the assessment record (ex. syllabus, class schedule).")
     weight: float | None = Field(default = None, description="Weight of the assessment in the source.")
-    due_date: str | None = Field(default = None, description="Due date of the assessment in the source.")
+    due_date: datetime.date | None = Field(default = None, description="Due date of the assessment in the source.")
     required_topic_ids: list[str] = Field(description="List of required topic IDs students need for the assessment.")
 
 # A course topic

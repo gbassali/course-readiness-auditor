@@ -64,6 +64,26 @@ Planted issues:
 5. Late-policy contradiction (Syllabus accepts work three days late, assignment brief doesn't accept late submissions)
 6. Vague accessibility instructions (Syllabus says "contact the appropriate university office.” No office name, process, contact information, etc.)
 
+### COURSE PACKAGE LOADER ###
+sample_course files
+        ↓
+CoursePackageLoader
+        ↓
+validated CoursePackage
+
+Deep agents support structured response data through some supplied response schema. 
+So I did consider this... but since the sameple course package data is predictably structured, I figured it was best to do this through deterministic app code.
+If this app was accepting any unpredictable instructor documents: An agent for extracting course data would make more sense.
+
+Extracts:
+- Course name, topics, and assessments from the course schedule --> tuple[str, list[CourseTopic], list[AssessmentRecord]]
+- Assessments from the syllabus --> list[AssessmentRecord]
+- Course documents --> list[CourseDocument]
+Uses this info to build a CoursePackage object. 
+
+The course package loader does NOT do any auditing or analysis. 
+It is solely responsible for reading, parsing & normalizing the input into pydantic model objects. 
+
 LangSmith***
 logging
 Request or audit IDs
