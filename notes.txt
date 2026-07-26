@@ -84,6 +84,14 @@ Uses this info to build a CoursePackage object.
 The course package loader does NOT do any auditing or analysis. 
 It is solely responsible for reading, parsing & normalizing the input into pydantic model objects. 
 
+### VALIDATORS ###
+- Validating total grade weights equals 100
+- Validating conflicting grade weights across documents don't exist
+- Validating the order of topics being taught & tested by assessments is correct.
+
+All validators take in a CoursePackage & return a list of AuditFindings containing evidence.
+
+
 LangSmith***
 logging
 Request or audit IDs
