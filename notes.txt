@@ -1,0 +1,58 @@
+A normal LLM call: Prompt --> model --> response
+An agent adds a decision making loop: Task received --> Decide action --> Call a tool or other agent --> Inspect result --> Decide next action --> Return final answer.
+
+Deep Agents
+    built using
+LangChain agent components
+    running on
+LangGraph
+    calling
+OpenAI / Gemini / Anthropic / another model
+
+LangChain is a collection of interfaces/building blocks for LLM applications
+Provides abstractions for things like: chat models, structured output, agent actions, etc.
+ex: Without LangChain you write provider specific code: openai_client.responses.create(...). You rewrite this if switching to Gemini for example.
+    With LangChain you have a consistent interface: model.invoke(...)
+
+LangGraph: ***
+
+Deep Agents: Higher level package. Gives an agrent support for subagents, custom tools, file operations, planning, todo lists, etc.
+This package is an "agent harness": It packages the infrastructure needed for an LLM to plan, use tools, and delegate work. 
+It lets you configure a manager-like LLM that calls other functions/tools & assign focused tasks to other LLMs. 
+No training models.
+ex: 
+agent = create_deep_agent(
+    model="provider:model-name",
+    system_prompt="You coordinate a university course audit.",
+    tools=[some_python_function],
+    subagents=[assessment_auditor, schedule_auditor],
+)
+
+Packages:
+- deepagents: Agent framework, used to create different agents & delegate tasks.
+- model provider package: Langchain integration package for whichever 
+    - Translates LangChain's interface into the providers API format.
+- fastapi: Python API framework
+- pydantic: Define models
+- pytest: Unit testing python code. Should use it to test deterministic code, not LLM output.
+- uvicorn: Server for running this application. HTTP requests.
+    - A basic server (started with python -m http.server 8000) wouldn't be able to handle FastAPI routes. It only works as a static file server: serving files from a directory.
+
+
+When creating a deep agent, you provide: 
+- Model name: The model this agent is using. deepagents uses this formula provider:model-name.
+- System prompt: Permanent role/behavioral instructions for the agent. 
+- Tools: Tools the agent has access to.
+    - These require a description so the LLM knows how to use it. 
+    - Use Docstring: Triple quote python string beneath function header.
+- Subagents: Subagents available to the agent: Agents for performing isolated tasks. 
+    - Solves context bloat problem: When agents use tools with large outputs the context window fills up quickly. Subagents isolate this work and return only the final result to the main agent. 
+    - The "subagents" parameter in create_deep_agent expects dictionaries defining subagents.
+    - Define subagents following the SubAgent spec with a plain dictionary, like "name": "something" instead of name = "something"
+    - *Must have a name & description
+- many other fields
+
+
+LangSmith***
+logging
+Request or audit IDs
