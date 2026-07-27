@@ -91,6 +91,18 @@ It is solely responsible for reading, parsing & normalizing the input into pydan
 
 All validators take in a CoursePackage & return a list of AuditFindings containing evidence.
 
+### UNIT TESTS ###
+Important to have unit tests that test all deterministic app code.
+Helper functions: Unit tests use small sample course packages/assessments for testing. 
+
+Unit tests cover findings/no findings operations for all validators:
+    1. Grade total of 105% returns one critical finding.
+    2. Grade total of 100% returns an empty list.
+    3. Conflicting dates return one finding with evidence from both files.
+    4. Matching dates return an empty list.
+    5. An assessment due before its required topic returns one finding.
+    6. An assessment due after its required topic returns an empty list.
+
 
 LangSmith***
 logging
