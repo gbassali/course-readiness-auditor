@@ -103,6 +103,49 @@ Unit tests cover findings/no findings operations for all validators:
     5. An assessment due before its required topic returns one finding.
     6. An assessment due after its required topic returns an empty list.
 
+### AGENTS/SUBAGENTS ###
+
+Assessment Alignment Auditor:
+- Checks assessment info across documents for problems.
+    - Compares assignment docs with rubrics or the syllabus.
+    - Vague or incomplete assessment instructions.
+- 1 task is given to this agent per assessment.
+- This subagent will NOT handle deterministic tasks like mismatched due dates, or assessment weights not adding up correctly. 
+- *NOTE: Every assessment alignment task repeats all document contents. For this prototype that makes sense.
+  But later on if the system handles more documents, a document selection system (based on the specific subagent being called) would make sense. 
+
+Schedule Policy Auditor:
+- Checks course & schedule policies/info across documents.
+    - Contradictory policies.
+    - Vague/incomplete policies. 
+    - Missing accessibility info (necessary for every course)
+    - Any other general concerns about the schedule. 
+- 1 tasks is given to this agent for the whole course. 
+
+Coordinator:
+- Coordinates the whole course readiness audit.
+- Delegates tasks to subagents.
+    - 1 assessment-alignment task per assessment
+    - 1 course-wide task for the schedule-policy-auditor.
+- Passes the course documents (filename + content) to the subagents. 
+- Returns structured output: AgentAuditResult (list of AuditFindings)
+
+### AUDIT SERVICE ###
+
+CoordinatorInvoker Class:
+- A Protocol class, meaning the class is an interface (python has no built in interface method)
+    - Any class can implement this protocol by having the same methods/attributes with the correct types.
+    - So for CoordinatorInvoker, any class with invoke(input: dict[str, Any]) -> dict[str, Any] will satisfy the protocol.
+    - We pass in an actual coordinator instance: coordinator = create_coordinator(model) which fulfills the protocol.
+
+AuditService:
+- Takes in a course package loader, coordinator agent, and validator functions.
+- Loads course package.
+- Runs all deterministic validators. 
+- Invokes coordinator agent to do all semantic checks. 
+- Returns all findings in an AuditReport object. 
+    - Gets audit status: Critical findings --> NOT READY. Warnings --> NEEDS REVIEW. No findings or just suggestions --> READY.
+- Uses dependency injection: AuditService doesn't create the loader and coordinator itself. 
 
 LangSmith***
 logging
