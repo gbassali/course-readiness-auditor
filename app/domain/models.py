@@ -67,7 +67,7 @@ class AuditReport(BaseModel):
     course_name: str = Field(description="Name of the audited course.")
     audit_status: AuditStatus = Field(description="Status derived from audit findings (existence of critical, warning, or suggestion findings).")
     findings: list[AuditFinding] = Field(description="List of audit findings.")
-    generated_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
+    generated_at: datetime.datetime = Field(default_factory=lambda: datetime.datetime.now(datetime.timezone.utc))
 
 # Used to normalize agent output
 class AgentAuditResult(BaseModel):
