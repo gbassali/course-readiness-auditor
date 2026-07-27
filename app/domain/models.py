@@ -68,3 +68,7 @@ class AuditReport(BaseModel):
     audit_status: AuditStatus = Field(description="Status derived from audit findings (existence of critical, warning, or suggestion findings).")
     findings: list[AuditFinding] = Field(description="List of audit findings.")
     generated_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
+
+# Used to normalize agent output
+class AgentAuditResult(BaseModel):
+    findings: list[AuditFinding]
