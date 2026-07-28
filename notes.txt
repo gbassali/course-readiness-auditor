@@ -147,6 +147,24 @@ AuditService:
     - Gets audit status: Critical findings --> NOT READY. Warnings --> NEEDS REVIEW. No findings or just suggestions --> READY.
 - Uses dependency injection: AuditService doesn't create the loader and coordinator itself. 
 
+### REPORT SERVICE ###
+
+For all findings in an audit report:
+- Deduplicates: Removes duplicates
+- Ranks them by severity
+- Creates a markdown file for the overall report.
+
+Added unit tests for this (unit tests for all deterministic logic in the app)
+
+### FASTAPI ROUTE ###
+Different than the markdown report flow: Returns json another application could consume.
+Using ApiRouter Class: Used to group related routes.
+- Runs audit
+- Deduplicates & ranks by severity
+
+
+
+
 LangSmith***
 logging
 Request or audit IDs
