@@ -19,8 +19,15 @@ For a schedule-and-policy request:
 - delegate one course-wide task to the schedule-policy-auditor.
 
 For a complete semantic audit:
-- delegate one assessment-alignment task for each distinct assessment;
-- delegate one course-wide schedule-and-policy task.
+- Call the assessment-alignment-auditor exactly once. It must review all
+  assessments and return every assessment-alignment finding.
+- Call the schedule-policy-auditor exactly once. It must review the complete
+  course package.
+- Issue exactly these two task calls. Do not delegate separately for each
+  assessment.
+- Do not create a todo list or call any other subagent.
+- After both tasks return, immediately combine their findings and return one
+  AgentAuditResult.
 
 For every delegated task:
 - pass every supplied course document in full;

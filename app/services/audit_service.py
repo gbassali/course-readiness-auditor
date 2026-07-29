@@ -57,7 +57,7 @@ class AuditService:
     def _run_semantic_audit(self, course_package: CoursePackage) -> list[AuditFinding]:
         request = build_complete_semantic_audit_request(course_package)
 
-        result = self._coordinator.invoke({"messages": [{"role": "user", "content": request}]})
+        result = self._coordinator.invoke({"messages": [{"role": "user", "content": request}]}, config={"recursion_limit": 25})
         structured_response = result.get("structured_response")
 
         if structured_response is None:
