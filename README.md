@@ -189,7 +189,7 @@ uvicorn app.main:app --reload
 
 Open `http://127.0.0.1:8000/docs` to run the audit through FastAPI's interactive Swagger UI.
 
-The current route uses `google_genai:gemini-3.5-flash-lite`. It includes client-side pacing, retries, and a request timeout. These reduce bursts but cannot increase the provider's account-level quota, so a quota-exhausted response may still require waiting for the quota window to reset or using an appropriately provisioned API account.
+The current route uses `google_genai:gemini-3.6-flash`. It includes client-side pacing, retries, and a request timeout. These reduce bursts but cannot increase the provider's account-level quota, so a quota-exhausted response may still require waiting for the quota window to reset or using an appropriately provisioned API account.
 
 ## Testing
 

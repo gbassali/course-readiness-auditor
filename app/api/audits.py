@@ -17,7 +17,7 @@ router = APIRouter(prefix="/audits")
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 SAMPLE_COURSE_PATH = PROJECT_ROOT / "app" / "sample_course"
 
-MODEL_NAME = "google_genai:gemini-3.5-flash-lite"
+MODEL_NAME = "google_genai:gemini-3.6-flash"
 
 rate_limiter = InMemoryRateLimiter(
     requests_per_second=1 / 6,  # One request every 20 seconds
